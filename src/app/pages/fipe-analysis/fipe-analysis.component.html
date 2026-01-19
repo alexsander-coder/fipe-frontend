@@ -1,32 +1,71 @@
-<h2>Análise FIPE</h2>
+<div class="fipe-container">
+  <h2>Análise de Variação FIPE</h2>
+  <p class="subtitle">
+    Selecione a marca e o modelo do veículo para visualizar a variação de preços ao longo dos anos.
+  </p>
 
-<label>Marca</label>
-<select [(ngModel)]="brandId" (change)="carregarModelos()">
-  <option *ngFor="let m of marcas" [value]="m.code">
-    {{ m.name }}
-  </option>
-</select>
+  <div class="card">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Marca</label>
+        <select [(ngModel)]="brandId" (change)="carregarModelos()">
+          <option value="" disabled selected>Selecione uma marca</option>
+          <option *ngFor="let m of marcas" [value]="m.code">
+            {{ m.name }}
+          </option>
+        </select>
+      </div>
 
-<label>Modelo</label>
-<select [(ngModel)]="modelId">
-  <option *ngFor="let m of modelos" [value]="m.code">
-    {{ m.name }}
-  </option>
-</select>
+      <div class="form-group">
+        <label>Modelo</label>
+        <select [(ngModel)]="modelId">
+          <option value="" disabled selected>Selecione um modelo</option>
+          <option *ngFor="let m of modelos" [value]="m.code">
+            {{ m.name }}
+          </option>
+        </select>
+      </div>
 
-<button (click)="analisar()">Analisar</button>
+      <div class="form-group action">
+        <button (click)="analisar()">Analisar</button>
+      </div>
+    </div>
+  </div>
 
-<table *ngIf="resultado.length">
-  <tr>
-    <th>Ano</th>
-    <th>Valor</th>
-    <th>Variação</th>
-    <th>%</th>
-  </tr>
-  <tr *ngFor="let r of resultado">
-    <td>{{ r.year }}</td>
-    <td>{{ r.value }}</td>
-    <td>{{ r.variationValue }}</td>
-    <td>{{ r.variationPercent }}</td>
-  </tr>
-</table>
+  <div class="table-card" *ngIf="resultado.length">
+    <table>
+      <thead>
+        <tr>
+          <th>Ano</th>
+          <th>Valor (R$)</th>
+          <th>Variação (R$)</th>
+          <th>Variação (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of resultado">
+          <td>{{ r.year }}</td>
+
+          <td>
+            {{ r.value | currency:'BRL':'symbol':'1.2-2' }}
+          </td>
+
+          <td>
+            <span *ngIf="r.variationValue !== null" [class.negative]="r.variationValue < 0">
+              {{ r.variationValue | currency:'BRL':'symbol':'1.2-2' }}
+            </span>
+            <span *ngIf="r.variationValue === null">—</span>
+          </td>
+
+          <td>
+            <span *ngIf="r.variationPercent !== null" [class.negative]="r.variationPercent < 0">
+              {{ r.variationPercent | number:'1.2-2' }}%
+            </span>
+            <span *ngIf="r.variationPercent === null">—</span>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

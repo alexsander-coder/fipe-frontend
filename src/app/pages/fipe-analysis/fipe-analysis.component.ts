@@ -4,7 +4,8 @@ import { FipeBackendService } from '../../services/fipe-backend.service';
 
 @Component({
   selector: 'app-fipe-analysis',
-  templateUrl: './fipe-analysis.component.html'
+  templateUrl: './fipe-analysis.component.html',
+  styleUrls: ['./fipe-analysis.component.css']
 })
 export class FipeAnalysisComponent implements OnInit {
 
