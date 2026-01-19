@@ -6,6 +6,62 @@ O frontend atua exclusivamente como **camada de apresentação**, delegando toda
 
 ---
 
+## Pré-requisitos
+
+Antes de executar o frontend, é necessário ter instalado na máquina:
+
+- **Node.js** (versão 16.x recomendada)
+- **npm** (instalado junto com o Node.js)
+- **Angular CLI 14** (opcional — o projeto pode ser executado via `npx`)
+
+> O projeto foi desenvolvido e testado utilizando **Node.js 16** e **Angular 14**.
+
+
+## Instalação do Frontend
+
+1. Clone o repositório para sua máquina local:
+
+```bash
+git clone https://github.com/alexsander-coder/fipe-frontend.git
+```
+
+2. Acesse a pasta do projeto frontend:
+
+```bash
+cd fipe-frontend
+```
+
+3. Instale as dependências do projeto:
+
+```bash
+npm install
+```
+
+4. Execução do Frontend
+```bash
+ng serve
+```
+
+5. Caso não tenha o Angular CLI instalado globalmente, utilize:
+```bash
+npx ng serve
+```
+
+6. Após a inicialização, a aplicação estará disponível em:
+```bash
+http://localhost:4200
+```
+
+## Integração com o Backend
+
+Para o funcionamento completo da aplicação, o backend deve estar em execução.
+Por padrão, o frontend se comunica com o backend em:
+```bash
+http://localhost:8080
+```
+
+---
+
 ## Objetivo
 
 - Permitir ao usuário selecionar:
